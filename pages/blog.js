@@ -1,13 +1,8 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import Styles from "@/styles/Blogs.module.css";
 import * as fs from "fs";
-import { useState } from "react";
-
-export default function Home(props) {
+const Blog = (props) => {
   const [blogs, setblogs] = useState(props.allBlogs);
 
   const contentPreview = (str) => {
@@ -20,22 +15,8 @@ export default function Home(props) {
   };
   return (
     <>
-      <Head>
-        <title>My Next App</title>
-        <meta
-          name="description"
-          content="This web site is for practice parpus :)"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.webp" />
-      </Head>
-
-      <div className={styles.main}>
-        <h1 className={styles.name}>My Blog</h1>
-      </div>
       <div className={Styles.blogs}>
         <div>
-          <h2>Latest Blogs</h2>
           {blogs?.map((data, index) => (
             <div key={index}>
               <Link href={`/blogposts/${makeslag(data.title)}`}>
@@ -53,7 +34,7 @@ export default function Home(props) {
       </div>
     </>
   );
-}
+};
 export async function getStaticProps(context) {
   const data = await fs.promises.readdir(`blogdata/`);
   let allBlogs = [];
@@ -66,3 +47,4 @@ export async function getStaticProps(context) {
     props: { allBlogs },
   };
 }
+export default Blog;

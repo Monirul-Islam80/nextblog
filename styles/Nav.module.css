@@ -1,0 +1,79 @@
+.mainnav {
+  margin: 20px 0;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logoimage {
+  transition: all 1s;
+}
+.logoimage:hover {
+  transform: rotateY(180deg) scaleX(1.3);
+}
+.mainnav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+
+.mainnav ul li {
+  margin: 0 20px;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.mainnav > ul > a {
+  text-decoration: none;
+  color: black;
+}
+
+.mainnav > ul > a ::after {
+  transition: all 0.8s;
+  content: "";
+  display: block;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+}
+.mainnav > ul > a:hover ::after {
+  width: 100%;
+}
+.toggle {
+  display: none;
+}
+@media screen and (max-width: 480px) {
+  .mainnav {
+    justify-content: space-between;
+    padding: 0 20px;
+    position: relative;
+  }
+  .mainnav > ul {
+    position: absolute;
+    flex-direction: column;
+    align-items: flex-end;
+    top: 34px;
+    right: 0px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+  }
+  .toggle {
+    z-index: 10000000;
+    display: inline-block;
+    position: relative;
+    height: max-content;
+  }
+  .toggle > div {
+    display: inline-block;
+    position: absolute;
+    top: -10px;
+    right: -12px;
+  }
+  .mainnav > ul > a {
+    color: white;
+  }
+}
